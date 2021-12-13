@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.mappers.boardMapper">
+
+	<select id="postList" resultType="com.board.practice.DTO.BoardDTO">
+		SELECT postNum, postTitle, postWriter, postTime, viewCount, commentCount
+			FROM board_table
+			ORDER by postNum desc
+	</select>
+	
+	<insert id="writePost" parameterType="com.board.practice.DTO.BoardDTO">
+		INSERT INTO board_table(postTitle, postWriter, postContent)
+			VALUE(#{postTitle}, #{postWriter}, #{postContent})
+	</insert>
+	
+	<select id="readPost" parameterType="int" resultType="com.board.practice.DTO.BoardDTO">
+		SELECT postNum, postTitle, postWriter, postTime, postContent, viewCount, commentCount
+			FROM board_table
+			WHERE postNum=#{postNum}
+	</select>
+	
+
+</mapper>
