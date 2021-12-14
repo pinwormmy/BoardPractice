@@ -17,20 +17,27 @@ public class BaordDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> postList() throws Exception {
-		
 		return sqlSession.selectList(namespace + ".postList");
 	}
 
 	@Override
 	public void writePost(BoardDTO boardDTO) throws Exception {
-		
 		sqlSession.insert(namespace + ".writePost", boardDTO);
-		
 	}
 
 	@Override
 	public BoardDTO readPost(int postNum) throws Exception {
 		return sqlSession.selectOne(namespace + ".readPost", postNum);
+	}
+
+	@Override
+	public void deletePost(int postNum) throws Exception {
+		sqlSession.delete(namespace + ".deletePost", postNum);		
+	}
+
+	@Override
+	public void modifyPost(BoardDTO boardDTO) throws Exception {
+		sqlSession.update(namespace + ".modifyPost", boardDTO);		
 	}
 
 }

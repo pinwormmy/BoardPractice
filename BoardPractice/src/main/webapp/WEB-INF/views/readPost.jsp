@@ -15,6 +15,8 @@
 	내용 <br>
 	<textarea name="postContent" rows="30" cols="200">${readPost.postContent}</textarea><br>
 	
+	<button type="button" onclick="location.href='/modifyPost?postNum=${readPost.postNum}'">수정</button>
+	<button type="button" onclick="location.href='/deletePost?postNum=${readPost.postNum}'">삭제</button>
 	<button type="button" onclick="location.href='/'">목록</button>
 
 </body>

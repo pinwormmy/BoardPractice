@@ -16,20 +16,27 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<BoardDTO> postList() throws Exception {
-		
 		return boardDAO.postList();
 	}
 
 	@Override
 	public void writePost(BoardDTO boardDTO) throws Exception {
-		
 		boardDAO.writePost(boardDTO);		
 	}
 
 	@Override
 	public BoardDTO readPost(int postNum) throws Exception {
-		
 		return boardDAO.readPost(postNum);
+	}
+
+	@Override
+	public void deletePost(int postNum) throws Exception {
+		boardDAO.deletePost(postNum);		
+	}
+
+	@Override
+	public void modifyPost(BoardDTO boardDTO) throws Exception {
+		boardDAO.modifyPost(boardDTO);		
 	}
 
 }

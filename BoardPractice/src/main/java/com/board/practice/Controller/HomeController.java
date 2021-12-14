@@ -42,7 +42,7 @@ public class HomeController {
 	}
 	
 	// 그냥 진작에 컨트롤러 분리해놓자 깔끔허게
-	// 첫 커밋도 변경사항있어야 올라가나 ? 그게 아니라
+	// 첫 커밋도 변경사항있어야 올라가나 ? 그게 아니라 인덱스 추가 한번하고 해야함.
 	
 	@RequestMapping(value = "/writePost")
 	public String writePost() {
@@ -51,7 +51,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/submitWritePost")
-	public String submitWritePost(Model model, BoardDTO boardDTO) throws Exception {
+	public String submitWritePost(BoardDTO boardDTO) throws Exception {
 		
 		boardService.writePost(boardDTO);
 		
@@ -67,5 +67,31 @@ public class HomeController {
 		model.addAttribute("readPost", readPost);
 		
 		return "readPost";
+	}
+	
+	@RequestMapping(value="/deletePost")
+	public String deletePost(int postNum) throws Exception{
+		
+		boardService.deletePost(postNum);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/modifyPost")
+	public String modifyPost(Model model, int postNum) throws Exception {
+		BoardDTO readPost = null;
+		readPost= boardService.readPost(postNum);
+		
+		model.addAttribute("readPost", readPost);
+		
+		return "modifyPost";
+	}
+	
+	@RequestMapping(value="/submitModifyPost")
+	public String submitModifyPost(BoardDTO boardDTO) throws Exception{
+				
+		boardService.modifyPost(boardDTO);
+		
+		return "redirect:/readPost?postNum=" + boardDTO.getPostNum();
 	}
 }

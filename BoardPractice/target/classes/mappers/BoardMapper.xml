@@ -21,5 +21,14 @@
 			WHERE postNum=#{postNum}
 	</select>
 	
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM board_table 
+			WHERE postNum=#{postNum}
+	</delete>
+	
+	<update id="modifyPost" parameterType="com.board.practice.DTO.BoardDTO">
+		UPDATE board_table SET postTitle=#{postTitle}, postWriter=#{postWriter}, postContent=#{postContent}
+			WHERE postNum=#{postNum}
+	</update>
 
 </mapper>
