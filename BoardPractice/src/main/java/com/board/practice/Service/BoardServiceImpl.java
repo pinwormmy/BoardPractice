@@ -1,5 +1,6 @@
 package com.board.practice.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modifyPost(BoardDTO boardDTO) throws Exception {
 		boardDAO.modifyPost(boardDTO);		
+	}
+
+	@Override
+	public List<BoardDTO> searchPostList(String searchOption, String searchKeyword) throws Exception {
+				
+		return boardDAO.searchPostList(searchOption, searchKeyword);
 	}
 
 }

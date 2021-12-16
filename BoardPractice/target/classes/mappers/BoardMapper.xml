@@ -30,5 +30,26 @@
 		UPDATE board_table SET postTitle=#{postTitle}, postWriter=#{postWriter}, postContent=#{postContent}
 			WHERE postNum=#{postNum}
 	</update>
+	
+	<select id="searchPostList" parameterType="HashMap" resultType="com.board.practice.DTO.BoardDTO">
+		SELECT postNum, postTitle, postWriter, postTime, viewCount, commentCount
+			FROM board_table
+			
+			<if test='searchOption.equals("searchPostTitle")'>
+				WHERE postTitle LIKE concat('%', #{searchKeyword}, '%')
+			</if>
+			<if test='searchOption.equals("searchPostContent")'>
+				WHERE postContent LIKE concat('%', #{searchKeyword}, '%')
+			</if>
+			<if test='searchOption.equals("searchPostWriter")'>
+				WHERE postWriter LIKE concat('%', #{searchKeyword}, '%')
+			</if>
+			<if test='searchOption.equals("searchPostTitleAndContent")'>
+				WHERE postTitle or postContent LIKE concat('%', #{searchKeyword}, '%')
+			</if>
+			
+			ORDER by postNum desc
+	</select>
+
 
 </mapper>

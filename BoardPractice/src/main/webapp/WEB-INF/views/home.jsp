@@ -47,5 +47,16 @@
 <button type="button" onclick="location.href='/writePost'">글쓰기</button>
 <button type="button" onclick="location.href='/'">목록</button>
 
+<form action="/search">
+	<select name="searchOption">
+		<option value="searchPostTitle">제목</option>
+		<option value="searchPostContent">내용</option>
+		<option value="searchPostWriter">작성자</option>
+		<option value="searchPostTitleAndContent" selected>제목+내용</option>
+	</select>
+	<input type="text" name="searchKeyword">
+	<button>검색</button>
+</form>
+
 </body>
 </html>
