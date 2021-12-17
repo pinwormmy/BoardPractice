@@ -51,5 +51,9 @@
 			ORDER by postNum desc
 	</select>
 
+	<update id="plusViewCount" parameterType="int">
+		UPDATE board_table SET viewCount= viewCount+1
+			WHERE postNum=#{postNum}
+	</update>
 
 </mapper>

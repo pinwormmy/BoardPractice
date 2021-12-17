@@ -20,5 +20,7 @@ public interface BoardDAO {
 	void modifyPost(BoardDTO boardDTO) throws Exception;
 	
 	List<BoardDTO> searchPostList(String searchOption, String searchKeyword) throws Exception;
+	
+	void plusViewCount(int postNum) throws Exception;
 
 }

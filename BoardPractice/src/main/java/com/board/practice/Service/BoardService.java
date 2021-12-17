@@ -1,6 +1,5 @@
 package com.board.practice.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.board.practice.DTO.BoardDTO;
@@ -18,4 +17,6 @@ public interface BoardService {
 	void modifyPost(BoardDTO boardDTO) throws Exception;
 	
 	List<BoardDTO> searchPostList(String searchOption, String searchKeyword) throws Exception;
+	
+	void plusViewCount(int postNum) throws Exception;
 }

@@ -32,7 +32,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${postList}" var="postList">
+		<c:forEach items="${postList}" var="postList" begin="0" begin="25">
 			<tr>
 				<td>${postList.postNum}</td>
 				<td> <a href="/readPost?postNum=${postList.postNum}">${postList.postTitle}</a> </td>
@@ -57,6 +57,10 @@
 	<input type="text" name="searchKeyword">
 	<button>검색</button>
 </form>
+
+<c:forEach items="${lastPageNum}" var="i">
+	<a> ${i} </a>
+</c:forEach>
 
 </body>
 </html>

@@ -46,4 +46,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.searchPostList(searchOption, searchKeyword);
 	}
 
+	@Override
+	public void plusViewCount(int postNum) throws Exception {
+		boardDAO.plusViewCount(postNum);
+	}
+
 }

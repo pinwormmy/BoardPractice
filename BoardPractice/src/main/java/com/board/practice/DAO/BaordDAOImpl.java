@@ -53,4 +53,10 @@ public class BaordDAOImpl implements BoardDAO {
 		return sqlSession.selectList(namespace + ".searchPostList", searchInfo);
 	}
 
+	@Override
+	public void plusViewCount(int postNum) throws Exception {
+		sqlSession.update(namespace + ".plusViewCount", postNum);
+		
+	}
+
 }
