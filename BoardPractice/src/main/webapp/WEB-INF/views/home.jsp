@@ -32,7 +32,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${postList}" var="postList" begin="0" begin="25">
+		<c:forEach items="${postList}" var="postList" begin="${postStartNum - 1}" end="${postLastNum - 1}">
 			<tr>
 				<td>${postList.postNum}</td>
 				<td> <a href="/readPost?postNum=${postList.postNum}">${postList.postTitle}</a> </td>
@@ -58,9 +58,24 @@
 	<button>검색</button>
 </form>
 
-<c:forEach items="${lastPageNum}" var="i">
-	<a> ${i} </a>
+<c:if test="${pageStartNum > 10}">
+<a href="/page?pageNum=${pageStartNum - 1}">☜</a>
+</c:if>
+
+<c:forEach var="pageNumber" begin="${pageStartNum}" end="${pageLastNum}">
+
+	<c:if test="${pageRecentNum == pageNumber}">
+		<b>${pageNumber}</b>  
+	</c:if>
+	<c:if test="${pageRecentNum != pageNumber}">
+		<a href="/page?pageNum=${pageNumber}"> ${pageNumber} </a>
+	</c:if>
+	
 </c:forEach>
+
+<c:if test="${pageLastNum < pageTotalEndNum}">
+<a href="/page?pageNum=${pageLastNum + 1}">☞</a>
+</c:if>
 
 </body>
 </html>

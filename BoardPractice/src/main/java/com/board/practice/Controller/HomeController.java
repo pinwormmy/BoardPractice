@@ -29,18 +29,29 @@ public class HomeController {
 
 		model.addAttribute("postList", postList);
 		
-		int pageList;
-		int pageLimit;
-		int pageNum;
-		int pageStartNum;
-		int pageEndNum;
+		int pageRecentNum = 1;
+		int pageListLimit = 10;
+		int pageStartNum = ((int)Math.ceil((double)pageRecentNum / pageListLimit) - 1)  * pageListLimit + 1;
+		int pageLastNum = pageStartNum + (pageListLimit - 1);
+		
 		
 		int postListLimit = 25;
+		int postLastNum = pageRecentNum * postListLimit;
+		int postStartNum = postLastNum - (postListLimit - 1);
+		
 		int postTotalNum = postList.size();
-		int lastPageNum = (int)Math.ceil((double)postTotalNum / postListLimit);
 		
-		model.addAttribute("lastPageNum", lastPageNum);
+		int pageTotalEndNum = (int)Math.ceil((double)postTotalNum / postListLimit);
+		if(pageLastNum > pageTotalEndNum)
+			pageLastNum = pageTotalEndNum;
 		
+		
+		model.addAttribute("postStartNum", postStartNum);
+		model.addAttribute("postLastNum", postLastNum);
+		model.addAttribute("pageRecentNum", pageRecentNum);
+		model.addAttribute("pageStartNum", pageStartNum);
+		model.addAttribute("pageLastNum", pageLastNum);
+		model.addAttribute("pageTotalEndNum", pageTotalEndNum);
 		
 		return "home";
 	}
