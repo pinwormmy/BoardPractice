@@ -12,7 +12,8 @@
 
 <form action="/submitWritePost" method="POST">
 	제목 <input type="text" name="postTitle" required style="width:500px"><br>
-	작성자 <input type="text" name="postWriter" required><br>
+	작성자 : ${loginMember.memberId}
+	<input type="hidden" name="postWriter" value="${loginMember.memberId}" required><br>
 	내용 <br>
 	<textarea name="postContent" rows="30" cols="200"></textarea><br>
 	<button>게시하기</button>

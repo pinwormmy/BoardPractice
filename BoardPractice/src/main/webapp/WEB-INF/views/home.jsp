@@ -21,6 +21,24 @@
 <p>개념 하나하나 이해하고 진행</p>
 
 
+<c:if test="${loginMember == null}">
+	<form action="/login" method="post">
+		ID : <input type="text" name="memberId" required>
+		비밀번호 : <input type="password" name="memberPassword" required>
+		<button>로그인</button>
+		<button type="button" onclick="location.href='/signUp'">회원가입</button>
+	</form>
+</c:if>
+
+<c:if test="${loginMember != null}">
+<p>
+	${loginMember.memberId}님께서 로그인 중입니다. 
+	<button type="button" onclick="location.href='/logout'">로그아웃</button>
+</p>
+</c:if>
+
+<hr>
+
 <table>
 	<thead>
 		<tr>
@@ -44,8 +62,7 @@
 	</tbody>
 </table>
 
-<button type="button" onclick="location.href='/writePost'">글쓰기</button>
-<button type="button" onclick="location.href='/'">목록</button>
+<hr>
 
 <form action="/search">
 	<select name="searchOption">
@@ -55,8 +72,16 @@
 		<option value="searchPostTitleAndContent" selected>제목+내용</option>
 	</select>
 	<input type="text" name="searchKeyword">
+	<input type="hidden" name="pageNum" value="1">
 	<button>검색</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<c:if test="${loginMember != null}">
+		<button type="button" onclick="location.href='/writePost'" >글쓰기</button>
+	</c:if>
+	<button type="button" onclick="location.href='/'" >목록</button>
 </form>
+
+
 
 <c:if test="${pageStartNum > 10}">
 <a href="/page?pageNum=${pageStartNum - 1}">☜</a>
