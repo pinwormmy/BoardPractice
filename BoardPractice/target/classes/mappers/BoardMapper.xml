@@ -55,5 +55,30 @@
 		UPDATE board_table SET viewCount= viewCount+1
 			WHERE postNum=#{postNum}
 	</update>
+	
+	<insert id="writeComment" parameterType="com.board.practice.DTO.BoardDTO">
+		INSERT INTO comment_table(postNum, commentWriter, commentContent)
+			VALUES(#{postNum}, #{commentWriter}, #{commentContent})
+	</insert>
+	
+	<update id="updateCommentCount" parameterType="int">
+		UPDATE board_table 
+			SET commentCount =
+				(SELECT COUNT(commentNum) 
+					FROM comment_table	
+					WHERE postNum=#{postNum})
+			WHERE postNum=#{postNum}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM comment_table 
+			WHERE commentNum=#{commentNum}
+	</delete>
+		
+	<select id="readComment" parameterType="int" resultType="com.board.practice.DTO.BoardDTO">
+		SELECT commentNum, commentWriter, commentTime, commentContent
+			FROM comment_table
+			WHERE postNum=#{postNum}
+	</select>
 
 </mapper>

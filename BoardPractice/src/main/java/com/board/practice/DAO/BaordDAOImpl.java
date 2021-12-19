@@ -59,4 +59,27 @@ public class BaordDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void submitComment(BoardDTO boardDTO) throws Exception {
+		sqlSession.insert(namespace + ".writeComment", boardDTO);
+	}
+
+	@Override
+	public void deleteComment(BoardDTO boardDTO) throws Exception {
+		sqlSession.delete(namespace + ".deleteComment", boardDTO);
+		
+	}
+
+	@Override
+	public List<BoardDTO> readComment(int postNum) throws Exception {
+		
+		return sqlSession.selectList(namespace + ".readComment", postNum);
+	}
+
+	@Override
+	public void updateCommentCount(int postNum) throws Exception {
+		
+		sqlSession.update(namespace + ".updateCommentCount", postNum);
+	}
+
 }

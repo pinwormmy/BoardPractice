@@ -51,4 +51,28 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.plusViewCount(postNum);
 	}
 
+	@Override
+	public void submitComment(BoardDTO boardDTO) throws Exception {
+		boardDAO.submitComment(boardDTO);		
+		
+	}
+
+	@Override
+	public void deleteComment(BoardDTO boardDTO) throws Exception {
+		boardDAO.deleteComment(boardDTO);	
+		
+	}
+
+	@Override
+	public List<BoardDTO> readComment(int postNum) throws Exception {
+		
+		return boardDAO.readComment(postNum);
+	}
+
+	@Override
+	public void updateCommentCount(int postNum) throws Exception {
+		
+		boardDAO.updateCommentCount(postNum);
+	}
+
 }

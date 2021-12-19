@@ -19,4 +19,12 @@ public interface BoardService {
 	List<BoardDTO> searchPostList(String searchOption, String searchKeyword) throws Exception;
 	
 	void plusViewCount(int postNum) throws Exception;
+
+	void submitComment(BoardDTO boardDTO) throws Exception;
+
+	void deleteComment(BoardDTO boardDTO) throws Exception;
+
+	List<BoardDTO> readComment(int postNum) throws Exception;
+
+	void updateCommentCount(int postNum) throws Exception;
 }

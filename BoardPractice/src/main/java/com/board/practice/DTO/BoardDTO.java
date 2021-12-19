@@ -13,6 +13,11 @@ public class BoardDTO {
 	private int permissionLevel;
 	private int commentCount;
 	
+	private int commentNum;
+	private String commentWriter;
+	private String commentContent;
+	private Timestamp commentTime;
+	
 	
 	public int getPostNum() {
 		return postNum;
@@ -62,4 +67,31 @@ public class BoardDTO {
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
 	}
+	public int getCommentNum() {
+		return commentNum;
+	}
+	public String getCommentWriter() {
+		return commentWriter;
+	}
+	public String getCommentContent() {
+		return commentContent;
+	}
+	public Timestamp getCommentTime() {
+		return commentTime;
+	}
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+	public void setCommentWriter(String commentWriter) {
+		this.commentWriter = commentWriter;
+	}
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
+	}
+	
+	
 }
+

@@ -19,7 +19,34 @@
 		<button type="button" onclick="location.href='/modifyPost?postNum=${readPost.postNum}'">수정</button>
 		<button type="button" onclick="location.href='/deletePost?postNum=${readPost.postNum}'">삭제</button>
 	</c:if>
-	<button type="button" onclick="location.href='/'">목록</button>
+	<button type="button" onclick="location.href='/'">목록</button><br>
+	
+	<hr>
+	
+	<c:forEach items="${readComment}" var="readComment">
+	
+		${readComment.commentWriter} 님의 댓글 &nbsp;&nbsp;&nbsp;&nbsp; ${readComment.commentTime}
+		
+		<c:if test="${loginMember != null and loginMember.memberId == readComment.commentWriter}">
+				<button type="button" onclick="location.href='/deleteComment?commentNum=${readComment.commentNum}'">삭제</button>
+		</c:if><br>
+		
+		<textarea rows="3" cols="200"> ${readComment.commentContent} </textarea><br>
+	
+	</c:forEach>
+	
+	
+	<c:if test="${loginMember != null}">
+		<form action="/submitComment" method="POST">
+			작성자 : ${loginMember.memberId}
+			<input type="hidden" name="commentWriter" value="${loginMember.memberId}" required>
+			<input type="hidden" name="postNum" value="${readPost.postNum}" ><br>
+			내용 <br>
+			<textarea name="commentContent" rows="2" cols="180"></textarea><br>
+			<button>댓글쓰기</button>
+			<button type="button" onclick="location.href='/'">목록</button>
+		</form>
+	</c:if>
 
 </body>
 </html>
